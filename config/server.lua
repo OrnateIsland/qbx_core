@@ -136,7 +136,11 @@ return {
     ---@param player Player Player object
     ---@param payment number Payment amount
     sendPaycheck = function(player, payment)
-        player.Functions.AddMoney('bank', payment)
+        if GetResourceState('ornate_cityhall') == "started" then
+            exports.ornate_cityhall:updatePaychecks(player.PlayerData.source, payment)
+        else
+            player.Functions.AddMoney('bank', payment, 'Paycheck')
+        end
         Notify(player.PlayerData.source, locale('info.received_paycheck', payment))
     end,
 }
