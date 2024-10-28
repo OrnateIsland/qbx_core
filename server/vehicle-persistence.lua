@@ -20,7 +20,8 @@ if GetConvar('qbx:enableVehiclePersistence', 'false') == 'false' then return end
 assert(lib.checkDependency('qbx_vehicles', '1.4.1', true))
 
 local function getVehicleId(vehicle)
-    return Entity(vehicle).state.vehicleid or exports.qbx_vehicles:GetVehicleIdByPlate(GetVehicleNumberPlateText(vehicle))
+    return Entity(vehicle).state.vehicleid or
+    exports.qbx_vehicles:GetVehicleIdByPlate(GetVehicleNumberPlateText(vehicle))
 end
 
 RegisterNetEvent('qbx_core:server:vehiclePropsChanged', function(netId, diff)
@@ -98,6 +99,7 @@ end
 
 AddEventHandler('entityRemoved', function(entity)
     if not Entity(entity).state.persisted then return end
+    local sessionId = Entity(entity).state.sessionId
     local coords = GetEntityCoords(entity)
     local heading = GetEntityHeading(entity)
     local bucket = GetEntityRoutingBucket(entity)
@@ -106,7 +108,6 @@ AddEventHandler('entityRemoved', function(entity)
     local vehicleId = getVehicleId(entity)
     if not vehicleId then return end
 
-    local sessionId = Entity(entity).state.sessionId
     local playerVehicle = exports.qbx_vehicles:GetPlayerVehicle(vehicleId)
 
     if DoesEntityExist(entity) then
