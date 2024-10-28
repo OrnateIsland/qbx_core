@@ -54,26 +54,26 @@ return {
     discord = {
         enabled = true,                              -- This will enable or disable the built in discord rich presence.
 
-        appId = '',                                  -- This is the Application ID (Replace this with you own)
+        appId = '1299423503740702982',                                  -- This is the Application ID (Replace this with you own)
 
         largeIcon = {                                -- To set this up, visit https://forum.cfx.re/t/how-to-updated-discord-rich-presence-custom-image/157686
-            icon = 'logo_name',                      -- Here you will have to put the image name for the 'large' icon.
-            text = 'This is a large icon with text', -- Here you can add hover text for the 'large' icon.
+            icon = 'ornate_rp_circle',                      -- Here you will have to put the image name for the 'large' icon.
+            text = 'Playing Ornate Roleplay', -- Here you can add hover text for the 'large' icon.
         },
 
         smallIcon = {
-            icon = 'logo_name',                      -- Here you will have to put the image name for the 'small' icon.
-            text = 'This is a small icon with text', -- Here you can add hover text for the 'small' icon.
+            icon = 'ornate_rp_circle',                      -- Here you will have to put the image name for the 'small' icon.
+            text = 'Join Now!', -- Here you can add hover text for the 'small' icon.
         },
 
         firstButton = {
-            text = 'First Button!',
-            link = 'fivem://connect/localhost:30120',
+            text = 'Play Now!',
+            link = 'fivem://connect/x9ayzg',
         },
 
         secondButton = {
-            text = 'Second Button!',
-            link = 'fivem://connect/localhost:30120',
+            text = 'Join Discord!',
+            link = 'https://discord.gg/H3w573gmjS',
         }
     },
 
