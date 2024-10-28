@@ -180,6 +180,39 @@ return {
             }
         }
     },
+    ['clerk'] = {
+        label = 'City Clerk',
+        type = 'gov',
+        defaultDuty = true,
+        offDutyPay = false,
+        grades = {
+            ['0'] = {
+                name = 'Trainee',
+                payment = 150
+            },
+            ['1'] = {
+                name = 'Clerk',
+                payment = 300
+            },
+            ['2'] = {
+                name = 'Senior Clerk',
+                payment = 450,
+            },
+            ['3'] = {
+                name = 'Department Head',
+                payment = 500,
+            },
+            ['4'] = {
+                name = 'Director',
+                payment = 550,
+            },
+            ['5'] = {
+                name = 'Chief Executive Officer',
+                isboss = true,
+                payment = 600,
+            },
+        },
+    },
     ['realestate'] = {
         label = 'Real Estate',
         type = 'realestate',
