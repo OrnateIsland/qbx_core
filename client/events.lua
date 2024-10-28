@@ -17,7 +17,7 @@ end)
 ---@param val PlayerData
 RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
     local invokingResource = GetInvokingResource()
-    if invokingResource and invokingResource ~= GetCurrentResourceName() then return end
+    if invokingResource and invokingResource ~= cache.resource then return end
     QBX.PlayerData = val
 end)
 
@@ -148,9 +148,10 @@ end)
 -- Other stuff
 
 ---@see client/functions.lua:QBCore.Functions.Notify
-RegisterNetEvent('QBCore:Notify', function(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
-    Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
-end)
+RegisterNetEvent('QBCore:Notify',
+    function(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
+        Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
+    end)
 
 -- Me command
 
@@ -177,7 +178,7 @@ AddStateBagChangeHandler('me', nil, function(bagName, _, value)
         local displayTime = 5000 + GetGameTimer()
         while displayTime > GetGameTimer() do
             playerPed = isLocalPlayer and cache.ped or GetPlayerPed(playerId)
-            qbx.drawText3d({text = value, coords = GetEntityCoords(playerPed)})
+            qbx.drawText3d({ text = value, coords = GetEntityCoords(playerPed) })
             Wait(0)
         end
     end)

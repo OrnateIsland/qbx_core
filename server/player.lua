@@ -24,7 +24,8 @@ function Login(source, citizenid, newData)
     end
 
     if citizenid then
-        local license, license2 = GetPlayerIdentifierByType(source --[[@as string]], 'license'), GetPlayerIdentifierByType(source --[[@as string]], 'license2')
+        local license, license2 = GetPlayerIdentifierByType(source --[[@as string]], 'license'),
+            GetPlayerIdentifierByType(source --[[@as string]], 'license2')
         local playerData = storage.fetchPlayerEntity(citizenid)
         if playerData and (license2 == playerData.license or license == playerData.license) then
             return not not CheckPlayerData(source, playerData)
@@ -90,7 +91,7 @@ function SetPlayerPrimaryJob(citizenid, jobName)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -98,7 +99,7 @@ function SetPlayerPrimaryJob(citizenid, jobName)
     if not grade then
         return false, {
             code = 'player_not_in_job',
-            message = string.format('player %s does not have job %s', citizenid, jobName)
+            message = ('player %s does not have job %s'):format(citizenid, jobName)
         }
     end
 
@@ -106,11 +107,11 @@ function SetPlayerPrimaryJob(citizenid, jobName)
     if not job then
         return false, {
             code = 'job_not_found',
-            message = jobName .. ' does not exist in core memory'
+            message = ('%s does not exist in core memory'):format(jobName)
         }
     end
 
-    assert(job.grades[grade] ~= nil, string.format('job %s does not have grade %s', jobName, grade))
+    assert(job.grades[grade] ~= nil, ('job %s does not have grade %s'):format(jobName, grade))
 
     player.PlayerData.job = toPlayerJob(jobName, job, grade)
     player.Functions.Save()
@@ -145,14 +146,14 @@ function AddPlayerToJob(citizenid, jobName, grade)
     if not job then
         return false, {
             code = 'job_not_found',
-            message = jobName .. ' does not exist in core memory'
+            message = ('%s does not exist in core memory'):format(jobName)
         }
     end
 
     if not job.grades[grade] then
         return false, {
             code = 'job_missing_grade',
-            message = string.format('job %s does not have grade %s', jobName, grade),
+            message = ('job %s does not have grade %s'):format(jobName, grade),
         }
     end
 
@@ -160,7 +161,7 @@ function AddPlayerToJob(citizenid, jobName, grade)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -210,7 +211,7 @@ function RemovePlayerFromJob(citizenid, jobName)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -249,7 +250,7 @@ local function setPlayerPrimaryGang(citizenid, gangName)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -257,7 +258,7 @@ local function setPlayerPrimaryGang(citizenid, gangName)
     if not grade then
         return false, {
             code = 'player_not_in_gang',
-            message = string.format('player %s does not have gang %s', citizenid, gangName)
+            message = ('player %s does not have gang %s'):format(citizenid, gangName)
         }
     end
 
@@ -265,11 +266,11 @@ local function setPlayerPrimaryGang(citizenid, gangName)
     if not gang then
         return false, {
             code = 'gang_not_found',
-            message = gangName .. ' does not exist in core memory'
+            message = ('%s does not exist in core memory'):format(gangName)
         }
     end
 
-    assert(gang.grades[grade] ~= nil, string.format('gang %s does not have grade %s', gangName, grade))
+    assert(gang.grades[grade] ~= nil, ('gang %s does not have grade %s'):format(gangName, grade))
 
     player.PlayerData.gang = {
         name = gangName,
@@ -312,14 +313,14 @@ function AddPlayerToGang(citizenid, gangName, grade)
     if not gang then
         return false, {
             code = 'gang_not_found',
-            message = gangName .. ' does not exist in core memory'
+            message = ('%s does not exist in core memory'):format(gangName)
         }
     end
 
     if not gang.grades[grade] then
         return false, {
             code = 'gang_missing_grade',
-            message = string.format('gang %s does not have grade %s', gangName, grade)
+            message = ('gang %s does not have grade %s'):format(gangName, grade)
         }
     end
 
@@ -327,7 +328,7 @@ function AddPlayerToGang(citizenid, gangName, grade)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -377,7 +378,7 @@ local function removePlayerFromGang(citizenid, gangName)
     if not player then
         return false, {
             code = 'player_not_found',
-            message = string.format('player not found with citizenid %s', citizenid)
+            message = ('player not found with citizenid %s'):format(citizenid)
         }
     end
 
@@ -424,7 +425,8 @@ function CheckPlayerData(source, playerData)
     local Offline = true
     if source then
         playerData.source = source
-        playerData.license = playerData.license or GetPlayerIdentifierByType(source --[[@as string]], 'license2') or GetPlayerIdentifierByType(source --[[@as string]], 'license')
+        playerData.license = playerData.license or GetPlayerIdentifierByType(source --[[@as string]], 'license2') or
+            GetPlayerIdentifierByType(source --[[@as string]], 'license')
         playerData.name = GetPlayerName(source)
         Offline = false
     end
@@ -469,7 +471,8 @@ function CheckPlayerData(source, playerData)
     playerData.metadata.jailitems = playerData.metadata.jailitems or {}
     playerData.metadata.status = playerData.metadata.status or {}
     playerData.metadata.phone = playerData.metadata.phone or {}
-    playerData.metadata.bloodtype = playerData.metadata.bloodtype or config.player.bloodTypes[math.random(1, #config.player.bloodTypes)]
+    playerData.metadata.bloodtype = playerData.metadata.bloodtype or
+        config.player.bloodTypes[math.random(1, #config.player.bloodTypes)]
     playerData.metadata.dealerrep = playerData.metadata.dealerrep or 0
     playerData.metadata.craftingrep = playerData.metadata.craftingrep or 0
     playerData.metadata.attachmentcraftingrep = playerData.metadata.attachmentcraftingrep or 0
@@ -676,7 +679,7 @@ function CreatePlayer(playerData, Offline)
         if not self.Offline then
             local playerState = Player(self.PlayerData.source).state
             TriggerClientEvent('qbx_core:client:onSetMetaData', self.PlayerData.source, meta, oldVal, val)
-            TriggerEvent('qbx_core:server:onSetMetaData', meta,  oldVal, val, self.PlayerData.source)
+            TriggerEvent('qbx_core:server:onSetMetaData', meta, oldVal, val, self.PlayerData.source)
 
             if (meta == 'hunger' or meta == 'thirst' or meta == 'stress') then
                 val = lib.math.clamp(val, 0, 100)
@@ -706,7 +709,8 @@ function CreatePlayer(playerData, Offline)
     function self.Functions.AddJobReputation(amount)
         if not amount then return end
         amount = tonumber(amount) --[[@as number]]
-        self.PlayerData.metadata.jobrep[self.PlayerData.job.name] = self.PlayerData.metadata.jobrep[self.PlayerData.job.name] + amount
+        self.PlayerData.metadata.jobrep[self.PlayerData.job.name] = self.PlayerData.metadata.jobrep
+            [self.PlayerData.job.name] + amount
         self.Functions.UpdatePlayerData()
     end
 
@@ -749,7 +753,9 @@ function CreatePlayer(playerData, Offline)
                 event = 'AddMoney',
                 color = 'lightgreen',
                 tags = tags,
-                message = ('**%s (citizenid: %s | id: %s)** $%s (%s) added, new %s balance: $%s reason: %s'):format(GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount, moneytype, moneytype, self.PlayerData.money[moneytype], reason),
+                message = ('**%s (citizenid: %s | id: %s)** $%s (%s) added, new %s balance: $%s reason: %s'):format(
+                    GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount,
+                    moneytype, moneytype, self.PlayerData.money[moneytype], reason),
                 --oxLibTags = ('script:%s,playerName:%s,citizenId:%s,playerSource:%s,amount:%s,moneyType:%s,newBalance:%s,reason:%s'):format(resource, GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount, moneytype, self.PlayerData.money[moneytype], reason)
             })
             emitMoneyEvents(moneytype, amount, 'add', false, reason)
@@ -786,7 +792,9 @@ function CreatePlayer(playerData, Offline)
                 event = 'RemoveMoney',
                 color = 'red',
                 tags = tags,
-                message = ('** %s (citizenid: %s | id: %s)** $%s (%s) removed, new %s balance: $%s reason: %s'):format(GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount, moneytype, moneytype, self.PlayerData.money[moneytype], reason),
+                message = ('** %s (citizenid: %s | id: %s)** $%s (%s) removed, new %s balance: $%s reason: %s'):format(
+                    GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount,
+                    moneytype, moneytype, self.PlayerData.money[moneytype], reason),
                 --oxLibTags = ('script:%s,playerName:%s,citizenId:%s,playerSource:%s,amount:%s,moneyType:%s,newBalance:%s,reason:%s'):format(resource, GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, amount, moneytype, self.PlayerData.money[moneytype], reason)
             })
             emitMoneyEvents(moneytype, amount, 'remove', true, reason)
@@ -819,7 +827,10 @@ function CreatePlayer(playerData, Offline)
                 event = 'SetMoney',
                 color = difference < 0 and 'red' or 'green',
                 tags = tags,
-                message = ('**%s (citizenid: %s | id: %s)** $%s (%s) %s, new %s balance: $%s reason: %s'):format(GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, absDifference, moneytype, dirChange, moneytype, self.PlayerData.money[moneytype], reason),
+                message = ('**%s (citizenid: %s | id: %s)** $%s (%s) %s, new %s balance: $%s reason: %s'):format(
+                    GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source,
+                    absDifference,
+                    moneytype, dirChange, moneytype, self.PlayerData.money[moneytype], reason),
                 --oxLibTags = ('script:%s,playerName:%s,citizenId:%s,playerSource:%s,amount:%s,moneyType:%s,newBalance:%s,reason:%s,direction:%s'):format(resource, GetPlayerName(self.PlayerData.source), self.PlayerData.citizenid, self.PlayerData.source, absDifference, moneytype, self.PlayerData.money[moneytype], reason, dirChange)
             })
             emitMoneyEvents(moneytype, absDifference, 'set', difference < 0, reason)
@@ -903,7 +914,8 @@ function CreatePlayer(playerData, Offline)
 
     ---@deprecated use ox_inventory exports directly
     function self.Functions.SetInventory()
-        error('Player.Functions.SetInventory is unsupported for ox_inventory. Try ClearInventory, then add the desired items.')
+        error(
+            'Player.Functions.SetInventory is unsupported for ox_inventory. Try ClearInventory, then add the desired items.')
     end
 
     ---@param cardNumber number
@@ -1035,7 +1047,8 @@ function Save(source)
             position = pcoords,
         })
     end)
-    assert(GetResourceState('qb-inventory') ~= 'started', 'qb-inventory is not compatible with qbx_core. use ox_inventory instead')
+    assert(GetResourceState('qb-inventory') ~= 'started',
+        'qb-inventory is not compatible with qbx_core. use ox_inventory instead')
     lib.print.verbose(('%s PLAYER SAVED!'):format(playerData.name))
 end
 
@@ -1054,7 +1067,8 @@ function SaveOffline(playerData)
             position = playerData.position.xyz
         })
     end)
-    assert(GetResourceState('qb-inventory') ~= 'started', 'qb-inventory is not compatible with qbx_core. use ox_inventory instead')
+    assert(GetResourceState('qb-inventory') ~= 'started',
+        'qb-inventory is not compatible with qbx_core. use ox_inventory instead')
     lib.print.verbose(('%s OFFLINE PLAYER SAVED!'):format(playerData.name))
 end
 
@@ -1063,7 +1077,8 @@ exports('SaveOffline', SaveOffline)
 ---@param source Source
 ---@param citizenid string
 function DeleteCharacter(source, citizenid)
-    local license, license2 = GetPlayerIdentifierByType(source --[[@as string]], 'license'), GetPlayerIdentifierByType(source --[[@as string]], 'license2')
+    local license, license2 = GetPlayerIdentifierByType(source --[[@as string]], 'license'),
+        GetPlayerIdentifierByType(source --[[@as string]], 'license2')
     local result = storage.fetchPlayerEntity(citizenid).license
     if license == result or license2 == result then
         CreateThread(function()
@@ -1097,7 +1112,8 @@ function ForceDeleteCharacter(citizenid)
     if result then
         local player = GetPlayerByCitizenId(citizenid)
         if player then
-            DropPlayer(player.PlayerData.source --[[@as string]], 'An admin deleted the character which you are currently using')
+            DropPlayer(player.PlayerData.source --[[@as string]],
+                'An admin deleted the character which you are currently using')
         end
 
         CreateThread(function()

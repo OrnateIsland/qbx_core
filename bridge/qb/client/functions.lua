@@ -84,29 +84,30 @@ functions.LoadAnimSet = lib.requestAnimSet
 ---@param prop? unknown
 ---@param onFinish fun()
 ---@param onCancel fun()
-function functions.Progressbar(_, label, duration, useWhileDead, canCancel, disableControls, animation, prop, _, onFinish, onCancel)
+function functions.Progressbar(_, label, duration, useWhileDead, canCancel, disableControls, animation, prop, _, onFinish,
+                               onCancel)
     if lib.progressBar({
-        duration = duration,
-        label = label,
-        useWhileDead = useWhileDead,
-        canCancel = canCancel,
-        disable = {
-            move = disableControls?.disableMovement,
-            car = disableControls?.disableCarMovement,
-            combat = disableControls?.disableCombat,
-            mouse = disableControls?.disableMouse,
-        },
-        anim = {
-            dict = animation?.animDict,
-            clip = animation?.anim,
-            flags = animation?.flags
-        },
-        prop = {
-            model = prop?.model,
-            pos = prop?.coords,
-            rot = prop?.rotation,
-        },
-    }) then
+            duration = duration,
+            label = label,
+            useWhileDead = useWhileDead,
+            canCancel = canCancel,
+            disable = {
+                move = disableControls?.disableMovement,
+                car = disableControls?.disableCarMovement,
+                combat = disableControls?.disableCombat,
+                mouse = disableControls?.disableMouse,
+            },
+            anim = {
+                dict = animation?.animDict,
+                clip = animation?.anim,
+                flags = animation?.flags
+            },
+            prop = {
+                model = prop?.model,
+                pos = prop?.coords,
+                rot = prop?.rotation,
+            },
+        }) then
         if onFinish then
             onFinish()
         end
@@ -234,7 +235,7 @@ functions.GetClosestBone = function(entity, list)
         end
     end
     if not bone then
-        bone = {id = GetEntityBoneIndexByName(entity, 'bodyshell'), type = 'remains', name = 'bodyshell'}
+        bone = { id = GetEntityBoneIndexByName(entity, 'bodyshell'), type = 'remains', name = 'bodyshell' }
         coords = GetWorldPositionOfEntityBone(entity, bone.id)
         distance = #(coords - playerCoords)
     end
@@ -243,7 +244,8 @@ end
 
 ---@deprecated use the GetWorldPositionOfEntityBone native and calculate distance directly
 functions.GetBoneDistance = function(entity, boneType, bone)
-    local boneIndex = boneType == 1 and GetPedBoneIndex(entity, bone --[[@as integer]]) or GetEntityBoneIndexByName(entity, bone --[[@as string]])
+    local boneIndex = boneType == 1 and GetPedBoneIndex(entity, bone --[[@as integer]]) or
+    GetEntityBoneIndexByName(entity, bone --[[@as string]])
     local boneCoords = GetWorldPositionOfEntityBone(entity, boneIndex)
     local playerCoords = GetEntityCoords(cache.ped)
     return #(playerCoords - boneCoords)
@@ -271,7 +273,8 @@ end
 function functions.SpawnVehicle(model, cb, coords, isnetworked, teleportInto)
     local playerCoords = GetEntityCoords(cache.ped)
     local combinedCoords = vec4(playerCoords.x, playerCoords.y, playerCoords.z, GetEntityHeading(cache.ped))
-    coords = type(coords) == 'table' and vec4(coords.x, coords.y, coords.z, coords.w or combinedCoords.w) or coords or combinedCoords
+    coords = type(coords) == 'table' and vec4(coords.x, coords.y, coords.z, coords.w or combinedCoords.w) or coords or
+    combinedCoords
     model = type(model) == 'string' and joaat(model) or model
     if not IsModelInCdimage(model) then return end
 
@@ -326,9 +329,9 @@ function functions.GetVehicleProperties(vehicle)
     if not props then return end
 
     local tireHealth = {}
-        for i = 0, 3 do
-            tireHealth[i] = GetVehicleWheelHealth(vehicle, i)
-        end
+    for i = 0, 3 do
+        tireHealth[i] = GetVehicleWheelHealth(vehicle, i)
+    end
 
     local tireBurstState = {}
     local tireBurstCompletely = {}
@@ -382,7 +385,8 @@ function functions.SetVehicleProperties(vehicle, props)
     if (props.tireBurstCompletely or props.tireBurstState) and not props.tyres then
         props.tyres = {}
         for i = 0, 7 do
-            props.tyres[i] = props.tireBurstCompletely and props.tireBurstCompletely[i] and 2 or props.tireBurstState and props.tireBurstState[i] and 1 or nil
+            props.tyres[i] = props.tireBurstCompletely and props.tireBurstCompletely[i] and 2 or
+            props.tireBurstState and props.tireBurstState[i] and 1 or nil
         end
     end
 
@@ -417,10 +421,13 @@ function functions.SetVehicleProperties(vehicle, props)
     props.modRoofLivery = props.modRoofLivery or props.liveryRoof
 
     --- lib.setVehicleProperties copied and pasted from Overextended below so that we can remove the error so that setting properties is best effort
-    assert(DoesEntityExist(vehicle), string.format('Unable to set vehicle properties for "%s" (entity does not exist)', vehicle))
+    assert(DoesEntityExist(vehicle),
+        ('Unable to set vehicle properties for "%s" (entity does not exist)'):format(vehicle))
 
     if NetworkGetEntityIsNetworked(vehicle) and NetworkGetEntityOwner(vehicle) ~= cache.playerId then
-        lib.print.warn('setting vehicle properties on non entity owner client. This may cause certain properties to fail to set. entity:', vehicle)
+        lib.print.warn(
+        'setting vehicle properties on non entity owner client. This may cause certain properties to fail to set. entity:',
+            vehicle)
     end
 
     local colorPrimary, colorSecondary = GetVehicleColours(vehicle)
@@ -781,7 +788,8 @@ functions.StartParticleAtCoord = function(dict, ptName, looped, coords, rot, sca
     SetPtfxAssetNextCall(dict)
     local particleHandle
     if looped then
-        particleHandle = StartParticleFxLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z, scale or 1.0, false, false, false, false)
+        particleHandle = StartParticleFxLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z,
+            scale or 1.0, false, false, false, false)
         if color then
             SetParticleFxLoopedColour(particleHandle, color.r, color.g, color.b, false)
         end
@@ -795,13 +803,15 @@ functions.StartParticleAtCoord = function(dict, ptName, looped, coords, rot, sca
         if color then
             SetParticleFxNonLoopedColour(color.r, color.g, color.b)
         end
-        StartParticleFxNonLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z, scale or 1.0, false, false, false)
+        StartParticleFxNonLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z, scale or 1.0, false,
+            false, false)
     end
     return particleHandle
 end
 
 ---@deprecated use ParticleFx natives directly
-functions.StartParticleOnEntity = function(dict, ptName, looped, entity, bone, offset, rot, scale, alpha, color, evolution, duration) -- luacheck: ignore
+functions.StartParticleOnEntity = function(dict, ptName, looped, entity, bone, offset, rot, scale, alpha, color,
+                                           evolution, duration)                                                                       -- luacheck: ignore
     lib.requestNamedPtfxAsset(dict)
     UseParticleFxAssetNextCall(dict)
     local particleHandle = nil
@@ -810,12 +820,15 @@ functions.StartParticleOnEntity = function(dict, ptName, looped, entity, bone, o
     ---@cast bone string
     local nameBoneIndex = bone and GetEntityBoneIndexByName(entity, bone) or 0
     local entityType = GetEntityType(entity)
-    local boneID = entityType == 1 and (pedBoneIndex ~= 0 and pedBoneIndex) or (looped and nameBoneIndex ~= 0 and nameBoneIndex)
+    local boneID = entityType == 1 and (pedBoneIndex ~= 0 and pedBoneIndex) or
+    (looped and nameBoneIndex ~= 0 and nameBoneIndex)
     if looped then
         if boneID then
-            particleHandle = StartParticleFxLoopedOnEntityBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, boneID, scale or 1.0, false, false, false)
+            particleHandle = StartParticleFxLoopedOnEntityBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot
+            .y, rot.z, boneID, scale or 1.0, false, false, false)
         else
-            particleHandle = StartParticleFxLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, scale or 1.0, false, false, false)
+            particleHandle = StartParticleFxLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y,
+                rot.z, scale or 1.0, false, false, false)
         end
         if evolution then
             SetParticleFxLoopedEvolution(particleHandle, evolution.name, evolution.amount, false)
@@ -834,9 +847,11 @@ functions.StartParticleOnEntity = function(dict, ptName, looped, entity, bone, o
             SetParticleFxNonLoopedColour(color.r, color.g, color.b)
         end
         if boneID then
-            StartParticleFxNonLoopedOnPedBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, boneID, scale or 1.0, false, false, false)
+            StartParticleFxNonLoopedOnPedBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, boneID,
+                scale or 1.0, false, false, false)
         else
-            StartParticleFxNonLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, scale or 1.0, false, false, false)
+            StartParticleFxNonLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z,
+                scale or 1.0, false, false, false)
         end
     end
     return particleHandle
@@ -900,7 +915,8 @@ end
 ---@param notifyIcon? string Font Awesome 6 icon name
 ---@param notifyIconColor? string Custom color for the icon chosen before
 function functions.Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
-    exports.qbx_core:Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
+    exports.qbx_core:Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon,
+        notifyIconColor)
 end
 
 return functions

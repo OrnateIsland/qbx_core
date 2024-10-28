@@ -299,7 +299,7 @@ function GetPermission(source)
     local perms = {}
 
     ---@diagnostic disable-next-line: deprecated
-    for _, v in pairs (serverConfig.permissions) do
+    for _, v in pairs(serverConfig.permissions) do
         if IsPlayerAceAllowed(source --[[@as string]], v) then
             perms[v] = true
         end
@@ -315,7 +315,8 @@ exports('GetPermission', GetPermission)
 ---@param source Source
 ---@return boolean
 function IsOptin(source)
-    local license = GetPlayerIdentifierByType(source --[[@as string]], 'license2') or GetPlayerIdentifierByType(source --[[@as string]], 'license')
+    local license = GetPlayerIdentifierByType(source --[[@as string]], 'license2') or
+    GetPlayerIdentifierByType(source --[[@as string]], 'license')
     if not license or not IsPlayerAceAllowed(source --[[@as string]], 'admin') then return false end
     local player = GetPlayer(source)
     return player.PlayerData.optin
@@ -326,7 +327,8 @@ exports('IsOptin', IsOptin)
 ---Opt in or out of admin reports
 ---@param source Source
 function ToggleOptin(source)
-    local license = GetPlayerIdentifierByType(source --[[@as string]], 'license2') or GetPlayerIdentifierByType(source --[[@as string]], 'license')
+    local license = GetPlayerIdentifierByType(source --[[@as string]], 'license2') or
+    GetPlayerIdentifierByType(source --[[@as string]], 'license')
     if not license or not IsPlayerAceAllowed(source --[[@as string]], 'admin') then return end
     local player = GetPlayer(source)
     player.PlayerData.optin = not player.PlayerData.optin
@@ -353,7 +355,9 @@ function IsPlayerBanned(source)
     if os.time() < result.expire then
         local timeTable = os.date('*t', tonumber(result.expire))
 
-        return true, ('You have been banned from the server:\n%s\nYour ban expires in %s/%s/%s %s:%s\n'):format(result.reason, timeTable.day, timeTable.month, timeTable.year, timeTable.hour, timeTable.min)
+        return true,
+            ('You have been banned from the server:\n%s\nYour ban expires in %s/%s/%s %s:%s\n'):format(result.reason,
+                timeTable.day, timeTable.month, timeTable.year, timeTable.hour, timeTable.min)
     else
         CreateThread(function()
             if license2 then
@@ -402,9 +406,10 @@ exports('Notify', Notify)
 ---@return string version
 local function GetCoreVersion(InvokingResource)
     ---@diagnostic disable-next-line: missing-parameter
-    local resourceVersion = GetResourceMetadata(GetCurrentResourceName(), 'version')
+    local resourceVersion = GetResourceMetadata(cache.resource, 'version')
     if InvokingResource and InvokingResource ~= '' then
-        lib.print.debug(('%s called qbcore version check: %s'):format(InvokingResource or 'Unknown Resource', resourceVersion))
+        lib.print.debug(('%s called qbcore version check: %s'):format(InvokingResource or 'Unknown Resource',
+            resourceVersion))
     end
     return resourceVersion
 end
@@ -417,7 +422,8 @@ local function ExploitBan(playerId, origin)
     local name = GetPlayerName(playerId)
     local success, errorResult = storage.insertBan({
         name = name,
-        license = GetPlayerIdentifierByType(playerId --[[@as string]], 'license2') or GetPlayerIdentifierByType(playerId --[[@as string]], 'license'),
+        license = GetPlayerIdentifierByType(playerId --[[@as string]], 'license2') or
+        GetPlayerIdentifierByType(playerId --[[@as string]], 'license'),
         discordId = GetPlayerIdentifierByType(playerId --[[@as string]], 'discord'),
         ip = GetPlayerIdentifierByType(playerId --[[@as string]], 'ip'),
         reason = origin,
@@ -432,7 +438,8 @@ local function ExploitBan(playerId, origin)
         event = 'Anti-Cheat',
         color = 'red',
         tags = loggingConfig.role,
-        message = success and ('%s has been kicked and banned for exploiting %s'):format(name, origin) or ('%s has been kicked for exploiting %s, ban insert failed'):format(name, origin)
+        message = success and ('%s has been kicked and banned for exploiting %s'):format(name, origin) or
+        ('%s has been kicked for exploiting %s, ban insert failed'):format(name, origin)
     })
 end
 
@@ -487,11 +494,11 @@ local function searchPlayerEntities(filters)
         local citizenid = response[i].citizenid
         local player = GetPlayerByCitizenId(citizenid)
         if player then
-            result[#result+1] = player
+            result[#result + 1] = player
         else
             local offlinePlayer = GetOfflinePlayer(citizenid)
             if offlinePlayer then
-                result[#result+1] = offlinePlayer
+                result[#result + 1] = offlinePlayer
             end
         end
     end
