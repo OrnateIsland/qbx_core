@@ -186,27 +186,27 @@ return {
         defaultDuty = true,
         offDutyPay = false,
         grades = {
-            ['0'] = {
+            [0] = {
                 name = 'Trainee',
                 payment = 150
             },
-            ['1'] = {
+            [1] = {
                 name = 'Clerk',
                 payment = 300
             },
-            ['2'] = {
+            [2] = {
                 name = 'Senior Clerk',
                 payment = 450,
             },
-            ['3'] = {
+            [3] = {
                 name = 'Department Head',
                 payment = 500,
             },
-            ['4'] = {
+            [4] = {
                 name = 'Director',
                 payment = 550,
             },
-            ['5'] = {
+            [5] = {
                 name = 'Chief Executive Officer',
                 isboss = true,
                 payment = 600,
