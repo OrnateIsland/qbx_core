@@ -1100,7 +1100,7 @@ return {
 		name = 'Castigator',
 		brand = 'Canis',
 		model = 'castigator',
-		price = math.random(25444, 25232),
+		price = math.random(25323, 25444),
 		category = 'suvs',
 		hash = `castigator`,
 	},
