@@ -13,7 +13,7 @@ return {
 		}
 	},
 	['police'] = {
-		label = 'LSPD',
+		label = 'Los Santos Police Department',
 		type = 'leo',
 		defaultDuty = true,
 		offDutyPay = false,
@@ -63,7 +63,57 @@ return {
 		}
 	},
 	['bcso'] = {
-		label = 'BCSO',
+		label = 'Blaine County Sheriff Office',
+		type = 'leo',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Recruit',
+				payment = 20
+			},
+			[1] = {
+				name = 'Cadet',
+				payment = 30
+			},
+			[2] = {
+				name = 'Deputy',
+				payment = 40
+			},
+			[3] = {
+				name = 'Senior Deputy',
+				payment = 50
+			},
+			[4] = {
+				name = 'Corporal',
+				payment = 75
+			},
+			[5] = {
+				name = 'Sergeant',
+				payment = 100
+			},
+			[6] = {
+				name = 'Lieutenant',
+				payment = 125
+			},
+			[7] = {
+				name = 'Captain',
+				payment = 150
+			},
+			[8] = {
+				name = 'Major',
+				payment = 175
+			},
+			[9] = {
+				name = 'Sheriff',
+				isboss = true,
+				bankAuth = true,
+				payment = 200
+			}
+		}
+	},
+	['pbso'] = {
+		label = 'Paleto Bay Sheriff Office',
 		type = 'leo',
 		defaultDuty = true,
 		offDutyPay = false,
