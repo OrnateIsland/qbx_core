@@ -62,14 +62,17 @@ return {
 	---@alias ColumnName string
 	---@type [TableName, ColumnName][]
 	characterDataTables = {
-		{ 'properties',                    'owner' },
-		{ 'bank_accounts_new',             'id' },
 		{ 'playerskins',                   'citizenid' },
 		{ 'player_mails',                  'citizenid' },
 		{ 'player_outfits',                'citizenid' },
 		{ 'player_vehicles',               'citizenid' },
 		{ 'player_groups',                 'citizenid' },
 		{ 'players',                       'citizenid' },
+		{ 'players_xp',                    'identifier' },
+		{ 'ra_boosting_user_settings',     'player_identifier' },
+		{ 'ra_racing_user_settings',       'player_identifier' },
+		{ 'pefcl_accounts',                'ownerIdentifier' },
+		{ 'pefcl_cash',                    'ownerIdentifier' },
 		{ 'npwd_calls',                    'identifier' },
 		{ 'npwd_darkchat_channel_members', 'user_identifier' },
 		{ 'npwd_marketplace_listings',     'identifier' },
@@ -79,8 +82,14 @@ return {
 		{ 'npwd_phone_gallery',            'identifier' },
 		{ 'npwd_twitter_tweets',           'identifier' },
 		{ 'npwd_twitter_profiles',         'identifier' },
-		{ 'npwd_match_views',              'identifier' },
-		{ 'npwd_match_profiles',           'identifier' },
+		{ 'ornate_battlepass',             'owner' },
+		{ 'ornate_diving',                 'identifier' },
+		{ 'ornate_electrician',            'identifier' },
+		{ 'ornate_garbage',                'identifier' },
+		{ 'ornate_gardener',               'identifier' },
+		{ 'ornate_starterpack',            'identifier' },
+		{ 'ornate_vehrentals',             'citizenid' },
+		{ 'pa_apartment_rooms',            'owner' },
 	}, -- Rows to be deleted when the character is deleted
 
 	server = {
@@ -125,19 +134,22 @@ return {
 	end,
 
 	getSocietyAccount = function(accountName)
-		return exports.pefcl:getTotalBankBalanceByIdentifier(0, accountName)
+		return exports['Renewed-Banking']:getAccountMoney(accountName)
 	end,
 
 	removeSocietyMoney = function(accountName, payment)
-		return exports.pefcl:removeBankBalanceByIdentifier(0, { identifier = accountName, amount = payment })
+		return exports['Renewed-Banking']:removeAccountMoney(accountName, payment)
 	end,
 
 	---Paycheck function
 	---@param player Player Player object
 	---@param payment number Payment amount
 	sendPaycheck = function(player, payment)
-		if GetResourceState('ornate_cityhall') == "started" then
-			exports.ornate_cityhall:updatePaychecks(player.PlayerData.source, payment)
+		if GetResourceState('vms_cityhall') == "started" then
+			if player.PlayerData and player.PlayerData.citizenid then
+				--export here
+				exports.vms_cityhall:updatePaychecks(player.PlayerData.source, payment)
+			end
 		else
 			player.Functions.AddMoney('bank', payment, 'Paycheck')
 		end
