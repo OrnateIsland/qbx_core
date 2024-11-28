@@ -207,27 +207,43 @@ return {
 				payment = 25
 			},
 			[1] = {
-				name = 'Emergency Medical Technician (EMT)',
-				payment = 50
+				name = 'Emergency Medical Technician',
+				payment = 30
 			},
 			[2] = {
-				name = 'Paramedic',
-				payment = 75
+				name = 'Junior Doctor',
+				payment = 45
 			},
 			[3] = {
-				name = 'EMS Supervisor',
-				payment = 100
+				name = 'Senior Doctor',
+				payment = 55
 			},
 			[4] = {
-				name = 'Deputy Chief',
-				payment = 150
+				name = 'Fellow Doctor',
+				payment = 75
 			},
 			[5] = {
-				name = 'Chief',
+				name = 'Attending Doctor',
+				payment = 100
+			},
+			[6] = {
+				name = 'Consultant',
+				payment = 150
+			},
+			[7] = {
+				name = 'Specialist',
+				payment = 175
+			},
+			[8] = {
+				name = 'Assistant Dean',
+				payment = 200
+			},
+			[9] = {
+				name = 'Hospital Director',
 				isboss = true,
 				bankAuth = true,
-				payment = 200
-			}
+				payment = 300
+			},
 		}
 	},
 	['clerk'] = {
@@ -259,6 +275,7 @@ return {
 			[5] = {
 				name = 'Chief Executive Officer',
 				isboss = true,
+				bankAuth = true,
 				payment = 600,
 			},
 		},
@@ -293,8 +310,8 @@ return {
 			}
 		}
 	},
-	['cardealer'] = {
-		label = 'Car Dealer',
+	['pdm'] = {
+		label = 'Premium Deluxe Motorsport',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -351,8 +368,8 @@ return {
 			}
 		}
 	},
-	['bikedealer'] = {
-		label = 'Bike Dealer',
+	['exoticmotors'] = {
+		label = 'Exotic Motorcycle Dealer',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -469,7 +486,7 @@ return {
 		}
 	},
 	['cruisincraft'] = {
-		label = 'Crusin Craft',
+		label = 'Crusin Craftsmen',
 		type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,
