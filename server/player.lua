@@ -749,17 +749,6 @@ function CreatePlayer(playerData, Offline)
 		if amount < 0 then return false end
 		if not self.PlayerData.money[moneytype] then return false end
 		self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
-
-		if moneytype == 'bank' then
-			local data = {}
-			data.amount = amount
-			data.message = reason
-			exports.pefcl:addBankBalance(self.PlayerData.source, data)
-		else
-			if not self.PlayerData.money[moneytype] then return false end
-			self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
-		end
-
 		if not self.Offline then
 			self.Functions.UpdatePlayerData()
 			local tags = amount > 100000 and config.logging.role or nil
@@ -777,7 +766,6 @@ function CreatePlayer(playerData, Offline)
 			})
 			emitMoneyEvents(moneytype, amount, 'add', false, reason)
 		end
-
 		return true
 	end
 
@@ -796,22 +784,8 @@ function CreatePlayer(playerData, Offline)
 					return false
 				end
 			end
-
-			if moneytype == 'bank' then
-				if (exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data - amount) < 0 then
-					return false
-				end
-			end
 		end
-		if moneytype == 'bank' then
-			local data = {}
-			data.amount = amount
-			data.message = reason
-			exports.pefcl:removeBankBalance(self.PlayerData.source, data)
-		else
-			self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
-		end
-
+		self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
 		if not self.Offline then
 			self.Functions.UpdatePlayerData()
 			local tags = amount > 100000 and config.logging.role or nil
@@ -829,7 +803,6 @@ function CreatePlayer(playerData, Offline)
 			})
 			emitMoneyEvents(moneytype, amount, 'remove', true, reason)
 		end
-
 		return true
 	end
 
@@ -843,16 +816,7 @@ function CreatePlayer(playerData, Offline)
 		if amount < 0 then return false end
 		if not self.PlayerData.money[moneytype] then return false end
 		local difference = amount - self.PlayerData.money[moneytype]
-		if moneytype == 'bank' then
-			local data = {}
-			data.amount = amount
-			exports.pefcl:setBankBalance(self.PlayerData.source, data)
-			self.PlayerData.money[moneytype] = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data or 0
-		else
-			if not self.PlayerData.money[moneytype] then return false end
-			self.PlayerData.money[moneytype] = amount
-		end
-
+		self.PlayerData.money[moneytype] = amount
 		if not self.Offline then
 			self.Functions.UpdatePlayerData()
 			local dirChange = difference < 0 and 'removed' or 'added'
@@ -873,7 +837,6 @@ function CreatePlayer(playerData, Offline)
 			})
 			emitMoneyEvents(moneytype, absDifference, 'set', difference < 0, reason)
 		end
-
 		return true
 	end
 
@@ -881,20 +844,7 @@ function CreatePlayer(playerData, Offline)
 	---@return boolean | number amount or false if moneytype does not exist
 	function self.Functions.GetMoney(moneytype)
 		if not moneytype then return false end
-		moneytype = moneytype:lower()
-		if moneytype == 'bank' then
-			self.PlayerData.money[moneytype] = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data or 0
-			return exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data
-		end
 		return self.PlayerData.money[moneytype]
-	end
-
-	function self.Functions.SyncMoney()
-		local money = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data
-		self.PlayerData.money['bank'] = money
-		if not self.Offline then
-			self.Functions.UpdatePlayerData()
-		end
 	end
 
 	local function qbItemCompat(item)
