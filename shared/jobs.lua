@@ -515,8 +515,8 @@ return {
 			}
 		}
 	},
-	['eastcustoms'] = {
-		label = 'East Customs',
+	['ornatedetailers'] = {
+		label = 'Ornate Drive Detailers',
 		type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,
