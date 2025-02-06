@@ -1,6 +1,7 @@
 local serverConfig = require 'config.server'.server
 local loggingConfig = require 'config.server'.logging
 local serverName = require 'config.shared'.serverName
+local storage = require 'server.storage.main'
 local logger = require 'modules.logger'
 local queue = require 'server.queue'
 
@@ -38,7 +39,7 @@ AddEventHandler('playerDropped', function(reason)
 	local license = GetPlayerIdentifierByType(src, 'license2') or GetPlayerIdentifierByType(src, 'license')
 	if license then usedLicenses[license] = nil end
 	if not QBX.Players[src] then return end
-	GlobalState.PlayerCount -= 1
+	GlobalState.PlayerCount = GetNumPlayerIndices()
 	local player = QBX.Players[src]
 	player.PlayerData.lastLoggedOut = os.time()
 	logger.log({
@@ -53,6 +54,23 @@ AddEventHandler('playerDropped', function(reason)
 	QBX.Players[src] = nil
 end)
 
+---@param source Source|string
+---@return table<string, string>
+local function getIdentifiers(source)
+	local identifiers = {}
+
+	for i = 0, GetNumPlayerIdentifiers(source --[[@as string]]) - 1 do
+		local identifier = GetPlayerIdentifier(source --[[@as string]], i)
+		local prefix = identifier:match('([^:]+)')
+
+		if prefix ~= 'ip' then
+			identifiers[prefix] = identifier
+		end
+	end
+
+	return identifiers
+end
+
 -- Player Connecting
 ---@param name string
 ---@param _ any
@@ -61,6 +79,7 @@ local function onPlayerConnecting(name, _, deferrals)
 	local src = source --[[@as string]]
 	local license = GetPlayerIdentifierByType(src, 'license2') or GetPlayerIdentifierByType(src, 'license')
 	deferrals.defer()
+	local userId = storage.fetchUserByIdentifier(license)
 
 	-- Mandatory wait
 	Wait(0)
@@ -75,6 +94,14 @@ local function onPlayerConnecting(name, _, deferrals)
 		deferrals.done(locale('error.no_valid_license'))
 	elseif serverConfig.checkDuplicateLicense and usedLicenses[license] then
 		deferrals.done(locale('error.duplicate_license'))
+	end
+
+	if not userId then
+		local identifiers = getIdentifiers(src)
+
+		identifiers.username = name
+
+		storage.createUser(identifiers)
 	end
 
 	local databaseTime = os.clock()
@@ -141,22 +168,22 @@ end
 
 AddEventHandler('playerConnecting', onPlayerConnecting)
 
+AddEventHandler('onResourceStart', function(resource)
+	if resource ~= cache.resource then return end
+
+	storage.createUsersTable()
+
+	MySQL.query([[
+        ALTER TABLE `players`
+        ADD COLUMN IF NOT EXISTS `userId` INT UNSIGNED DEFAULT NULL AFTER `id`;
+    ]])
+end)
+
 -- New method for checking if logged in across all scripts (optional)
 -- `if LocalPlayer.state.isLoggedIn then` for the client side
 -- `if Player(source).state.isLoggedIn then` for the server side
 RegisterNetEvent('QBCore:Server:OnPlayerLoaded', function()
 	Player(source --[[@as Source]]).state:set('isLoggedIn', true, true)
-	if not QBX.Players[source] then return end
-	local player = QBX.Players[source]
-	logger.log({
-		source = 'qbx_core',
-		webhook = loggingConfig.webhook['joinleave'],
-		event = 'Loaded',
-		color = 'green',
-		message = ('**%s** (%s) loaded into the server with character: %s %s (**%s**)'):format(GetPlayerName(source),
-			player.PlayerData.license, player.PlayerData.charinfo.firstname, player.PlayerData.charinfo.lastname,
-			player.PlayerData.citizenid),
-	})
 end)
 
 ---@param source Source
