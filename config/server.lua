@@ -62,34 +62,21 @@ return {
 	---@alias ColumnName string
 	---@type [TableName, ColumnName][]
 	characterDataTables = {
-		{ 'playerskins',                   'citizenid' },
-		{ 'player_mails',                  'citizenid' },
-		{ 'player_outfits',                'citizenid' },
-		{ 'player_vehicles',               'citizenid' },
-		{ 'player_groups',                 'citizenid' },
-		{ 'players',                       'citizenid' },
-		{ 'players_xp',                    'identifier' },
-		{ 'ra_boosting_user_settings',     'player_identifier' },
-		{ 'ra_racing_user_settings',       'player_identifier' },
-		{ 'pefcl_accounts',                'ownerIdentifier' },
-		{ 'pefcl_cash',                    'ownerIdentifier' },
-		{ 'npwd_calls',                    'identifier' },
-		{ 'npwd_darkchat_channel_members', 'user_identifier' },
-		{ 'npwd_marketplace_listings',     'identifier' },
-		{ 'npwd_messages_participants',    'participant' },
-		{ 'npwd_notes',                    'identifier' },
-		{ 'npwd_phone_contacts',           'identifier' },
-		{ 'npwd_phone_gallery',            'identifier' },
-		{ 'npwd_twitter_tweets',           'identifier' },
-		{ 'npwd_twitter_profiles',         'identifier' },
-		{ 'ornate_battlepass',             'owner' },
-		{ 'ornate_diving',                 'identifier' },
-		{ 'ornate_electrician',            'identifier' },
-		{ 'ornate_garbage',                'identifier' },
-		{ 'ornate_gardener',               'identifier' },
-		{ 'ornate_starterpack',            'identifier' },
-		{ 'ornate_vehrentals',             'citizenid' },
-		{ 'pa_apartment_rooms',            'owner' },
+		{ 'playerskins',               'citizenid' },
+		{ 'player_mails',              'citizenid' },
+		{ 'player_outfits',            'citizenid' },
+		{ 'player_vehicles',           'citizenid' },
+		{ 'player_groups',             'citizenid' },
+		{ 'players',                   'citizenid' },
+		{ 'players_xp',                'identifier' },
+		{ 'ra_boosting_user_settings', 'player_identifier' },
+		{ 'ra_racing_user_settings',   'player_identifier' },
+		{ 'ornate_diving',             'identifier' },
+		{ 'ornate_electrician',        'identifier' },
+		{ 'ornate_garbage',            'identifier' },
+		{ 'ornate_gardener',           'identifier' },
+		{ 'ornate_starterpack',        'identifier' },
+		{ 'ornate_vehrentals',         'citizenid' },
 	}, -- Rows to be deleted when the character is deleted
 
 	server = {
@@ -134,11 +121,11 @@ return {
 	end,
 
 	getSocietyAccount = function(accountName)
-		return exports['Renewed-Banking']:getAccountMoney(accountName)
+		return exports.ornate_banking:GetSocietyAccountMoney(accountName)
 	end,
 
 	removeSocietyMoney = function(accountName, payment)
-		return exports['Renewed-Banking']:removeAccountMoney(accountName, payment)
+		return exports.ornate_banking:RemoveSocietyMoney(accountName, payment)
 	end,
 
 	---Paycheck function
