@@ -20,45 +20,45 @@ return {
 		grades = {
 			[0] = {
 				name = 'Recruit',
-				payment = 20
+				payment = 40
 			},
 			[1] = {
 				name = 'Cadet',
-				payment = 30
+				payment = 60
 			},
 			[2] = {
 				name = 'Officer',
-				payment = 40
+				payment = 80
 			},
 			[3] = {
 				name = 'Senior Officer',
-				payment = 50
+				payment = 100
 			},
 			[4] = {
 				name = 'Corporal',
-				payment = 75
+				payment = 150
 			},
 			[5] = {
 				name = 'Sergeant',
-				payment = 100
+				payment = 200
 			},
 			[6] = {
 				name = 'Lieutenant',
-				payment = 125
+				payment = 250
 			},
 			[7] = {
 				name = 'Captain',
-				payment = 150
+				payment = 300
 			},
 			[8] = {
 				name = 'Assistant Chief',
-				payment = 175
+				payment = 400
 			},
 			[9] = {
 				name = 'Chief',
 				isboss = true,
 				bankAuth = true,
-				payment = 200
+				payment = 500
 			}
 		}
 	},
@@ -70,45 +70,45 @@ return {
 		grades = {
 			[0] = {
 				name = 'Recruit',
-				payment = 20
+				payment = 40
 			},
 			[1] = {
 				name = 'Cadet',
-				payment = 30
+				payment = 60
 			},
 			[2] = {
 				name = 'Deputy',
-				payment = 40
+				payment = 80
 			},
 			[3] = {
 				name = 'Senior Deputy',
-				payment = 50
+				payment = 100
 			},
 			[4] = {
 				name = 'Corporal',
-				payment = 75
+				payment = 150
 			},
 			[5] = {
 				name = 'Sergeant',
-				payment = 100
+				payment = 200
 			},
 			[6] = {
 				name = 'Lieutenant',
-				payment = 125
+				payment = 250
 			},
 			[7] = {
 				name = 'Captain',
-				payment = 150
+				payment = 300
 			},
 			[8] = {
 				name = 'Major',
-				payment = 175
+				payment = 400
 			},
 			[9] = {
 				name = 'Sheriff',
 				isboss = true,
 				bankAuth = true,
-				payment = 200
+				payment = 500
 			}
 		}
 	},
@@ -120,79 +120,79 @@ return {
 		grades = {
 			[0] = {
 				name = 'Recruit',
-				payment = 20
+				payment = 40
 			},
 			[1] = {
 				name = 'Cadet',
-				payment = 30
+				payment = 60
 			},
 			[2] = {
 				name = 'Deputy',
-				payment = 40
+				payment = 80
 			},
 			[3] = {
 				name = 'Senior Deputy',
-				payment = 50
+				payment = 100
 			},
 			[4] = {
 				name = 'Corporal',
-				payment = 75
+				payment = 150
 			},
 			[5] = {
 				name = 'Sergeant',
-				payment = 100
+				payment = 200
 			},
 			[6] = {
 				name = 'Lieutenant',
-				payment = 125
+				payment = 250
 			},
 			[7] = {
 				name = 'Captain',
-				payment = 150
+				payment = 300
 			},
 			[8] = {
 				name = 'Major',
-				payment = 175
+				payment = 400
 			},
 			[9] = {
 				name = 'Sheriff',
 				isboss = true,
 				bankAuth = true,
-				payment = 200
+				payment = 500
 			}
 		}
 	},
 	['sasp'] = {
-		label = 'SASP',
+		label = 'San Andreas State Police',
 		type = 'leo',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
 			[0] = {
 				name = 'Trooper',
-				payment = 50
+				payment = 100
 			},
 			[1] = {
 				name = 'Master Trooper',
-				payment = 100
+				payment = 200
 			},
 			[2] = {
 				name = 'Trooper Sergeant',
-				payment = 125
+				payment = 250
 			},
 			[3] = {
 				name = 'Marshal',
-				payment = 150
+				payment = 300
 			},
 			[4] = {
 				name = 'Deputy Commissioner',
-				payment = 250
+				payment = 500
 			},
 			[5] = {
 				name = 'Commissioner',
 				isboss = true,
 				bankAuth = true,
-				payment = 300
+				payment = 600
 			}
 		}
 	},
@@ -369,7 +369,94 @@ return {
 		}
 	},
 	['exoticmotors'] = {
-		label = 'Exotic Motorcycle Dealer',
+		label = 'Exotic Motors',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Recruit',
+				payment = 50
+			},
+			[1] = {
+				name = 'Showroom Sales',
+				payment = 75
+			},
+			[2] = {
+				name = 'Business Sales',
+				payment = 100
+			},
+			[3] = {
+				name = 'Finance',
+				payment = 125
+			},
+			[4] = {
+				name = 'Manager',
+				isboss = true,
+				bankAuth = true,
+				payment = 150
+			}
+		}
+	},
+	['westernmb'] = {
+		label = 'Western Motorcycle Dealer',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Recruit',
+				payment = 50
+			},
+			[1] = {
+				name = 'Showroom Sales',
+				payment = 75
+			},
+			[2] = {
+				name = 'Business Sales',
+				payment = 100
+			},
+			[3] = {
+				name = 'Finance',
+				payment = 125
+			},
+			[4] = {
+				name = 'Manager',
+				isboss = true,
+				bankAuth = true,
+				payment = 150
+			}
+		}
+	},
+	['automotos'] = {
+		label = 'Auto Motos Offroad',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Recruit',
+				payment = 50
+			},
+			[1] = {
+				name = 'Showroom Sales',
+				payment = 75
+			},
+			[2] = {
+				name = 'Business Sales',
+				payment = 100
+			},
+			[3] = {
+				name = 'Finance',
+				payment = 125
+			},
+			[4] = {
+				name = 'Manager',
+				isboss = true,
+				bankAuth = true,
+				payment = 150
+			}
+		}
+	},
+	['ornateimports'] = {
+		label = 'Ornate Imports Dealer',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -515,8 +602,8 @@ return {
 			}
 		}
 	},
-	['eastcustoms'] = {
-		label = 'East Customs',
+	['ornatedetailers'] = {
+		label = 'Ornate Drive Detailers',
 		type = 'mechanic',
 		defaultDuty = true,
 		offDutyPay = false,
