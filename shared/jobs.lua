@@ -282,7 +282,7 @@ return {
 	},
 	['realestate'] = {
 		label = 'Real Estate',
-		type = 'realestate',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -312,6 +312,7 @@ return {
 	},
 	['pdm'] = {
 		label = 'Premium Deluxe Motorsport',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -341,6 +342,7 @@ return {
 	},
 	['ornateautos'] = {
 		label = 'Ornate Exclusive Autos',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -370,6 +372,7 @@ return {
 	},
 	['exoticmotors'] = {
 		label = 'Exotic Motors',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -399,6 +402,7 @@ return {
 	},
 	['westernmb'] = {
 		label = 'Western Motorcycle Dealer',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -428,6 +432,7 @@ return {
 	},
 	['automotos'] = {
 		label = 'Auto Motos Offroad',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -457,6 +462,7 @@ return {
 	},
 	['ornateimports'] = {
 		label = 'Ornate Imports Dealer',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -486,6 +492,7 @@ return {
 	},
 	['boatdealer'] = {
 		label = 'Boat Dealer',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -515,6 +522,7 @@ return {
 	},
 	['jetbroker'] = {
 		label = 'Jet Broker',
+		type = 'business',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -634,6 +642,7 @@ return {
 	},
 	['judge'] = {
 		label = 'Honorary',
+		type = 'gov',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -645,6 +654,7 @@ return {
 	},
 	['lawyer'] = {
 		label = 'Law Firm',
+		type = 'gov',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -656,6 +666,7 @@ return {
 	},
 	['reporter'] = {
 		label = 'Reporter',
+		type = 'gov',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -667,6 +678,7 @@ return {
 	},
 	['taxi'] = {
 		label = 'Taxi',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -696,6 +708,7 @@ return {
 	},
 	['builder'] = {
 		label = 'Construction',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -707,6 +720,7 @@ return {
 	},
 	['diving'] = {
 		label = 'Scuba',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -718,6 +732,7 @@ return {
 	},
 	['electrician'] = {
 		label = 'Electrician',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -729,6 +744,7 @@ return {
 	},
 	['garbage'] = {
 		label = 'Garbage',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -740,6 +756,7 @@ return {
 	},
 	['gardener'] = {
 		label = 'Gardening',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -751,6 +768,7 @@ return {
 	},
 	['gruppe'] = {
 		label = 'Gruppe Sechs',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -762,6 +780,7 @@ return {
 	},
 	['lumberjack'] = {
 		label = 'Lumberjack',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -773,6 +792,7 @@ return {
 	},
 	['mining'] = {
 		label = 'Mine',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -784,6 +804,7 @@ return {
 	},
 	['oilrig'] = {
 		label = 'Oil Rig',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -795,6 +816,7 @@ return {
 	},
 	['trucker'] = {
 		label = 'Trucker',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -806,6 +828,7 @@ return {
 	},
 	['tow'] = {
 		label = 'Towing',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -817,6 +840,7 @@ return {
 	},
 	['vineyard'] = {
 		label = 'Vineyard',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -828,6 +852,7 @@ return {
 	},
 	['bus'] = {
 		label = 'Bus',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
@@ -839,6 +864,7 @@ return {
 	},
 	['hotdog'] = {
 		label = 'Hotdog',
+		type = 'public',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
