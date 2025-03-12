@@ -132,6 +132,8 @@ return {
 	---@param player Player Player object
 	---@param payment number Payment amount
 	sendPaycheck = function(player, payment)
+		print(payment)
+		print(json.encode(player, { indent = true }))
 		if GetResourceState('vms_cityhall') == "started" then
 			if player.PlayerData and player.PlayerData.citizenid then
 				--export here
