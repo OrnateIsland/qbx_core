@@ -132,10 +132,10 @@ return {
 	---@param player Player Player object
 	---@param payment number Payment amount
 	sendPaycheck = function(player, payment)
-		print(json.encode(player.PlayerData, { indent = true }))
-		print(payment, player.PlayerData.source)
+		-- print(json.encode(player.PlayerData, { indent = true }))
 		if GetResourceState('vms_cityhall') == "started" then
-			if player.PlayerData and player.PlayerData.citizenid then
+			print(payment, player.PlayerData.source)
+			if player.PlayerData and player.PlayerData.source then
 				--export here
 				exports.vms_cityhall:updatePaychecks(player.PlayerData.source, payment)
 			end
