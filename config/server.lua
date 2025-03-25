@@ -135,6 +135,7 @@ return {
 		-- print(json.encode(player.PlayerData, { indent = true }))
 		if GetResourceState('vms_cityhall') == "started" then
 			print(payment, player.PlayerData.source)
+			if player.PlayerData.source < 1 then goto skip end
 			if player.PlayerData and player.PlayerData.source then
 				--export here
 				exports.vms_cityhall:updatePaychecks(player.PlayerData.source, payment)
@@ -143,5 +144,6 @@ return {
 			player.Functions.AddMoney('bank', payment, 'Paycheck')
 		end
 		Notify(player.PlayerData.source, locale('info.received_paycheck', payment))
+		::skip::
 	end,
 }
