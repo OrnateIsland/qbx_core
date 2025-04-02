@@ -443,7 +443,7 @@ else
 			if NetworkDoesEntityExistWithNetworkId(netId) then
 				return NetworkGetEntityFromNetworkId(netId)
 			end
-		end, ('statebag timed out while awaiting entity creation! (%s)'):format(bagName), 10000)
+		end, ('statebag timed out while awaiting entity creation! (%s)'):format(bagName), 30000)
 
 		if not entity then
 			lib.print.error(('statebag received invalid entity! (%s)'):format(bagName))
