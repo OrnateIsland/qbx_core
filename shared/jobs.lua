@@ -885,6 +885,18 @@ return {
 			}
 		}
 	},
+	['transport'] = {
+		label = 'Transportation and Logistics',
+		type = 'public',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Field Worker',
+				payment = 15
+			}
+		}
+	},
 	['oilrig'] = {
 		label = 'Oil Rig',
 		type = 'public',
