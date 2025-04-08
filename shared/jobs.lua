@@ -62,7 +62,7 @@ return {
 			}
 		}
 	},
-	['bcso'] = {
+	['sheriff'] = {
 		label = 'Blaine County Sheriff Office',
 		type = 'leo',
 		defaultDuty = true,
@@ -111,56 +111,7 @@ return {
 				payment = 2000
 			}
 		}
-	},
-	['pbso'] = {
-		label = 'Paleto Bay Sheriff Office',
-		type = 'leo',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-			[0] = {
-				name = 'Recruit',
-				payment = 50
-			},
-			[1] = {
-				name = 'Cadet',
-				payment = 100
-			},
-			[2] = {
-				name = 'Deputy',
-				payment = 150
-			},
-			[3] = {
-				name = 'Senior Deputy',
-				payment = 250
-			},
-			[4] = {
-				name = 'Corporal',
-				payment = 450
-			},
-			[5] = {
-				name = 'Sergeant',
-				payment = 750
-			},
-			[6] = {
-				name = 'Lieutenant',
-				payment = 1000
-			},
-			[7] = {
-				name = 'Captain',
-				payment = 1250
-			},
-			[8] = {
-				name = 'Major',
-				payment = 1500
-			},
-			[9] = {
-				name = 'Sheriff',
-				isboss = true,
-				bankAuth = true,
-				payment = 2000
-			}
-		}
+
 	},
 	['sasp'] = {
 		label = 'San Andreas State Police',
@@ -170,29 +121,29 @@ return {
 		grades = {
 			[0] = {
 				name = 'Trooper',
-				payment = 100
+				payment = 500
 			},
 			[1] = {
 				name = 'Master Trooper',
-				payment = 200
+				payment = 1000
 			},
 			[2] = {
 				name = 'Trooper Sergeant',
-				payment = 250
+				payment = 1500
 			},
 			[3] = {
 				name = 'Marshal',
-				payment = 300
+				payment = 2000
 			},
 			[4] = {
 				name = 'Deputy Commissioner',
-				payment = 500
+				payment = 2500
 			},
 			[5] = {
 				name = 'Commissioner',
 				isboss = true,
 				bankAuth = true,
-				payment = 600
+				payment = 3000
 			}
 		}
 	},
