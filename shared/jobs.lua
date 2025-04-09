@@ -13,140 +13,125 @@ return {
 		}
 	},
 	['police'] = {
-		label = 'Los Santos Police Department',
+		label = 'Police',
 		type = 'leo',
 		defaultDuty = true,
 		offDutyPay = false,
 		grades = {
 			[0] = {
-				name = 'Recruit',
+				name = 'LSPD Recruit',
 				payment = 50
 			},
 			[1] = {
-				name = 'Cadet',
-				payment = 100
-			},
-			[2] = {
-				name = 'Officer',
-				payment = 150
-			},
-			[3] = {
-				name = 'Senior Officer',
-				payment = 250
-			},
-			[4] = {
-				name = 'Corporal',
-				payment = 450
-			},
-			[5] = {
-				name = 'Sergeant',
-				payment = 750
-			},
-			[6] = {
-				name = 'Lieutenant',
-				payment = 1000
-			},
-			[7] = {
-				name = 'Captain',
-				payment = 1250
-			},
-			[8] = {
-				name = 'Assistant Chief',
-				payment = 1500
-			},
-			[9] = {
-				name = 'Chief',
-				isboss = true,
-				bankAuth = true,
-				payment = 2000
-			}
-		}
-	},
-	['sheriff'] = {
-		label = 'Blaine County Sheriff Office',
-		type = 'leo',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-			[0] = {
-				name = 'Recruit',
+				name = 'BCSO Recruit',
 				payment = 50
 			},
-			[1] = {
-				name = 'Cadet',
+			[2] = {
+				name = 'LSPD Cadet',
 				payment = 100
 			},
-			[2] = {
-				name = 'Deputy',
-				payment = 150
-			},
 			[3] = {
-				name = 'Senior Deputy',
-				payment = 250
+				name = 'BCSO Cadet',
+				payment = 100
 			},
 			[4] = {
-				name = 'Corporal',
-				payment = 450
+				name = 'LSPD Officer',
+				payment = 150
 			},
 			[5] = {
-				name = 'Sergeant',
-				payment = 750
+				name = 'BCSO Deputy',
+				payment = 150
 			},
 			[6] = {
-				name = 'Lieutenant',
-				payment = 1000
+				name = 'LSPD Senior Officer',
+				payment = 250
 			},
 			[7] = {
-				name = 'Captain',
-				payment = 1250
+				name = 'BCSO Senior Deputy',
+				payment = 250
 			},
 			[8] = {
-				name = 'Major',
-				payment = 1500
+				name = 'LSPD Corporal',
+				payment = 450
 			},
 			[9] = {
-				name = 'Sheriff',
+				name = 'BCSO Corporal',
+				payment = 450
+			},
+			[10] = {
+				name = 'LSPD Sergeant',
+				payment = 750
+			},
+			[11] = {
+				name = 'BCSO Sergeant',
+				payment = 750
+			},
+			[12] = {
+				name = 'BCSO Lieutenant',
+				payment = 1000
+			},
+			[13] = {
+				name = 'LSPD Lieutenant',
+				payment = 1000
+			},
+			[14] = {
+				name = 'LSPD Captain',
+				payment = 1250
+			},
+			[15] = {
+				name = 'BCSO Captain',
+				payment = 1250
+			},
+			[16] = {
+				name = 'LSPD Assistant Chief',
+				payment = 1500
+			},
+			[17] = {
+				name = 'BCSO Major',
+				payment = 1500
+			},
+			[18] = {
+				name = 'LSPD Chief',
 				isboss = true,
 				bankAuth = true,
 				payment = 2000
-			}
-		}
-
-	},
-	['sasp'] = {
-		label = 'San Andreas State Police',
-		type = 'leo',
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-			[0] = {
-				name = 'Trooper',
+			},
+			[19] = {
+				name = 'BCSO Sheriff',
+				isboss = true,
+				bankAuth = true,
+				payment = 2000
+			},
+			[20] = {
+				name = 'SASP Trooper',
 				payment = 500
 			},
-			[1] = {
-				name = 'Master Trooper',
+			[21] = {
+				name = 'SASP Master Trooper',
 				payment = 1000
 			},
-			[2] = {
-				name = 'Trooper Sergeant',
+			[22] = {
+				name = 'SASP Trooper Sergeant',
 				payment = 1500
 			},
-			[3] = {
-				name = 'Marshal',
+			[23] = {
+				name = 'SASP Marshal',
 				payment = 2000
 			},
-			[4] = {
-				name = 'Deputy Commissioner',
+			[24] = {
+				name = 'SASP Deputy Commissioner',
 				payment = 2500
 			},
-			[5] = {
-				name = 'Commissioner',
+			[25] = {
+				name = 'SASP Commissioner',
 				isboss = true,
 				bankAuth = true,
 				payment = 3000
 			}
+
 		}
 	},
+
 	['ambulance'] = {
 		label = 'EMS',
 		type = 'ems',
