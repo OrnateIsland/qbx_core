@@ -696,6 +696,32 @@ return {
 			}
 		}
 	},
+	['petshopfluffyfriends'] = {
+		label = 'Fluffy Friends Pet Shop',
+		type = 'business',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Clerk',
+				payment = 50
+			},
+			[1] = {
+				name = 'Veterinary',
+				payment = 75
+			},
+			[2] = {
+				name = 'Manager',
+				payment = 100
+			},
+			[3] = {
+				name = 'Boss',
+				isboss = true,
+				bankAuth = true,
+				payment = 125
+			},
+		}
+	},
 	['judge'] = {
 		label = 'Honorary',
 		type = 'gov',
