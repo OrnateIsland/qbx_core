@@ -63,7 +63,6 @@ return {
 	---@type [TableName, ColumnName][]
 	characterDataTables = {
 		{ 'playerskins',               'citizenid' },
-		{ 'player_mails',              'citizenid' },
 		{ 'player_outfits',            'citizenid' },
 		{ 'player_vehicles',           'citizenid' },
 		{ 'player_groups',             'citizenid' },
