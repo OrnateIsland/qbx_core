@@ -131,7 +131,6 @@ return {
 
 		}
 	},
-
 	['ambulance'] = {
 		label = 'EMS',
 		type = 'ems',
@@ -928,6 +927,18 @@ return {
 		grades = {
 			[0] = {
 				name = 'Driver',
+				payment = 50
+			}
+		}
+	},
+	['herbal'] = {
+		label = 'Herbal Alchemist',
+		type = 'public',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+			[0] = {
+				name = 'Mixer',
 				payment = 50
 			}
 		}
