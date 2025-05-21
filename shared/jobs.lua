@@ -76,6 +76,8 @@ return {
 			},
 			[14] = {
 				name = 'LSPD Captain',
+				isboss = true,
+				bankAuth = true,
 				payment = 1250
 			},
 			[15] = {
