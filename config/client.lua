@@ -2,7 +2,7 @@ return {
 	statusIntervalSeconds = 5,        -- how often to check hunger/thirst status to remove health if 0.
 	loadingModelsTimeout = 30000,     -- Waiting time for ox_lib to load the models before throws an error, for low specs pc
 
-	pauseMapText = 'Ornate Roleplay', -- Text shown above the map when ESC is pressed. If left empty 'FiveM' will appear
+	pauseMapText = 'Gorkhali Roleplay', -- Text shown above the map when ESC is pressed. If left empty 'FiveM' will appear
 
 	characters = {
 		useExternalCharacters = true, -- Whether you have an external character management resource. (If true, disables the character management inside the core)
@@ -57,12 +57,12 @@ return {
 		appId = '1299423503740702982',        -- This is the Application ID (Replace this with you own)
 
 		largeIcon = {                         -- To set this up, visit https://forum.cfx.re/t/how-to-updated-discord-rich-presence-custom-image/157686
-			icon = 'ornate_rp_circle',        -- Here you will have to put the image name for the 'large' icon.
-			text = 'Playing Ornate Roleplay', -- Here you can add hover text for the 'large' icon.
+			icon = 'gorkhalirp',        -- Here you will have to put the image name for the 'large' icon.
+			text = 'Playing Gorkhali Roleplay', -- Here you can add hover text for the 'large' icon.
 		},
 
 		smallIcon = {
-			icon = 'ornate_rp_circle', -- Here you will have to put the image name for the 'small' icon.
+			icon = 'gorkhalirp', -- Here you will have to put the image name for the 'small' icon.
 			text = 'Join Now!',        -- Here you can add hover text for the 'small' icon.
 		},
 
@@ -73,7 +73,7 @@ return {
 
 		secondButton = {
 			text = 'Join Discord!',
-			link = 'https://discord.gg/H3w573gmjS',
+			link = 'https://discord.gg/gorkhalirp',
 		}
 	},
 
