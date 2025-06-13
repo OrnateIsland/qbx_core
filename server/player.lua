@@ -424,6 +424,7 @@ function SetPlayerPrimaryGang(citizenid, gangName)
 		name = gangName,
 		label = gang.label,
 		isboss = gang.grades[grade].isboss,
+		bankAuth = gang.grades[grade].bankAuth,
 		grade = {
 			name = gang.grades[grade].name,
 			level = grade
@@ -548,6 +549,7 @@ function RemovePlayerFromGang(citizenid, gangName)
 			name = 'none',
 			label = gang.label,
 			isboss = false,
+			bankAuth = false,
 			grade = {
 				name = gang.grades[0].name,
 				level = 0
@@ -667,6 +669,9 @@ function CheckPlayerData(source, playerData)
 	local job = GetJob(playerData.job?.name) or GetJob('unemployed')
 	assert(job ~= nil, 'Unemployed job not found. Does it exist in shared/jobs.lua?')
 	local jobGrade = GetJob(playerData.job?.name) and playerData.job.grade.level or 0
+	if not job.grades[jobGrade] then
+        jobGrade = 0
+    end
 
 	playerData.job = {
 		name = playerData.job?.name or 'unemployed',
@@ -675,6 +680,7 @@ function CheckPlayerData(source, playerData)
 		type = job.type,
 		onduty = playerData.job?.onduty or false,
 		isboss = job.grades[jobGrade].isboss or false,
+		bankAuth = job.grades[jobGrade].bankAuth or false,
 		grade = {
 			name = job.grades[jobGrade].name,
 			level = jobGrade,
@@ -692,6 +698,7 @@ function CheckPlayerData(source, playerData)
 		name = playerData.gang?.name or 'none',
 		label = gang.label,
 		isboss = gang.grades[gangGrade].isboss or false,
+		bankAuth = gang.grades[gangGrade].bankAuth or false,
 		grade = {
 			name = gang.grades[gangGrade].name,
 			level = gangGrade
@@ -944,6 +951,7 @@ function CreatePlayer(playerData, Offline)
 				name = 'unemployed',
 				label = 'Civilian',
 				isboss = false,
+				bankAuth = false,
 				onduty = true,
 				payment = 10,
 				grade = {
@@ -961,6 +969,7 @@ function CreatePlayer(playerData, Offline)
 				self.PlayerData.job.grade.name = jobGrade.name
 				self.PlayerData.job.payment = jobGrade.payment or 30
 				self.PlayerData.job.isboss = jobGrade.isboss or false
+				self.PlayerData.job.bankAuth = jobGrade.bankAuth or false
 			else
 				self.PlayerData.job.grade = {
 					name = 'No Grades',
@@ -986,6 +995,7 @@ function CreatePlayer(playerData, Offline)
 				name = 'none',
 				label = 'No Gang Affiliation',
 				isboss = false,
+				bankAuth = false,
 				grade = {
 					name = 'none',
 					level = 0
@@ -997,13 +1007,16 @@ function CreatePlayer(playerData, Offline)
 			local gangGrade = gang.grades[self.PlayerData.gang.grade.level]
 
 			if gangGrade then
-				self.PlayerData.gang.isboss = gangGrade.isboss or false
+				self.PlayerData.gang.grade.name = gangGrade.name
+			self.PlayerData.gang.isboss = gangGrade.isboss or false
+			self.PlayerData.gang.bankAuth = gangGrade.bankAuth or false
 			else
 				self.PlayerData.gang.grade = {
 					name = 'No Grades',
 					level = 0,
 				}
 				self.PlayerData.gang.isboss = false
+				self.PlayerData.gang.bankAuth = false
 			end
 		end
 
@@ -1105,6 +1118,8 @@ function SetPlayerData(identifier, key, value)
 	UpdatePlayerData(identifier)
 end
 
+exports('SetPlayerData', SetPlayerData)
+
 ---@param identifier Source | string
 function UpdatePlayerData(identifier)
 	local player = type(identifier) == 'string' and (GetPlayerByCitizenId(identifier) or GetOfflinePlayer(identifier)) or
@@ -1115,6 +1130,8 @@ function UpdatePlayerData(identifier)
 	TriggerEvent('QBCore:Player:SetPlayerData', player.PlayerData)
 	TriggerClientEvent('QBCore:Player:SetPlayerData', player.PlayerData.source, player.PlayerData)
 end
+
+exports('UpdatePlayerData', UpdatePlayerData)
 
 ---@param identifier Source | string
 ---@param metadata string
@@ -1127,9 +1144,25 @@ function SetMetadata(identifier, metadata, value)
 
 	if not player then return end
 
-	local oldValue = player.PlayerData.metadata[metadata]
+	local oldValue
 
-	player.PlayerData.metadata[metadata] = value
+    if metadata:match('%.') then
+        local metaTable, metaKey = metadata:match('([^%.]+)%.(.+)')
+
+        if metaKey:match('%.') then
+            lib.print.error('cannot get nested metadata more than 1 level deep')
+        end
+
+        oldValue = player.PlayerData.metadata[metaTable]
+
+        player.PlayerData.metadata[metaTable][metaKey] = value
+
+        metadata = metaTable
+    else
+        oldValue = player.PlayerData.metadata[metadata]
+
+        player.PlayerData.metadata[metadata] = value
+    end
 
 	UpdatePlayerData(identifier)
 
@@ -1174,7 +1207,17 @@ function GetMetadata(identifier, metadata)
 
 	if not player then return end
 
-	return player.PlayerData.metadata[metadata]
+	if metadata:match('%.') then
+        local metaTable, metaKey = metadata:match('([^%.]+)%.(.+)')
+
+        if metaKey:match('%.') then
+            lib.print.error('cannot get nested metadata more than 1 level deep')
+        end
+
+        return player.PlayerData.metadata[metaTable][metaKey]
+    else
+        return player.PlayerData.metadata[metadata]
+    end
 end
 
 exports('GetMetadata', GetMetadata)
