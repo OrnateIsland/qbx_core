@@ -131,7 +131,7 @@ return {
 	---@param player Player Player object
 	---@param payment number Payment amount
 	sendPaycheck = function(player, payment)
-		if GetResourceState('vms_cityhall') == "started" then
+		--[[ if GetResourceState('vms_cityhall') == "started" then
 			-- print(json.encode(player.PlayerData, { indent = true }))
 			-- print(payment, player.PlayerData.source)
 			if player.PlayerData.source < 1 then goto skip end
@@ -141,7 +141,8 @@ return {
 			end
 		else
 			player.Functions.AddMoney('bank', payment, 'Paycheck')
-		end
+		end ]]
+		player.Functions.AddMoney('bank', payment, 'Paycheck')
 		Notify(player.PlayerData.source, locale('info.received_paycheck', payment))
 		::skip::
 	end,
