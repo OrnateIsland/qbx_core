@@ -5,15 +5,15 @@ return {
 		---@alias MoneyType 'cash' | 'bank' | 'crypto'
 		---@alias Money {cash: number, bank: number, crypto: number}
 		---@type Money
-		moneyTypes = { cash = 1000, bank = 10000, crypto = 0, ornatecoin = 0 }, -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
-		dontAllowMinus = { 'cash', 'crypto', 'ornatecoin' },              -- Money that is not allowed going in minus
+		moneyTypes = { cash = 1000, bank = 10000, crypto = 0, gcoin = 1 }, -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
+		dontAllowMinus = { 'cash', 'crypto', 'gcoin' },              -- Money that is not allowed going in minus
 		paycheckTimeout = 10,                                             -- The time in minutes that it will give the paycheck
 		paycheckSociety = false                                           -- If true paycheck will come from the society account that the player is employed at
 	},
 
 	player = {
-		hungerRate = 4.2, -- Rate at which hunger goes down.
-		thirstRate = 3.8, -- Rate at which thirst goes down.
+		hungerRate = 4.25, -- Rate at which hunger goes down.
+		thirstRate = 3.75, -- Rate at which thirst goes down.
 
 		---@enum BloodType
 		bloodTypes = {
@@ -84,7 +84,7 @@ return {
 		closedReason = 'Server Closed',    -- Reason message to display when people can't join the server
 		whitelist = false,                 -- Enable or disable whitelist on the server
 		whitelistPermission = 'admin',     -- Permission that's able to enter the server when the whitelist is on
-		discord = '',                      -- Discord invite link
+		discord = 'discord.gg/gorkhalirp',                      -- Discord invite link
 		checkDuplicateLicense = true,      -- Check for duplicate rockstar license on join
 		---@deprecated use cfg ACE system instead
 		permissions = { 'god', 'admin', 'mod' }, -- Add as many groups as you want here after creating them in your server.cfg
@@ -144,6 +144,6 @@ return {
 		end ]]
 		player.Functions.AddMoney('bank', payment, 'Paycheck')
 		Notify(player.PlayerData.source, locale('info.received_paycheck', payment))
-		::skip::
+		-- ::skip::
 	end,
 }
